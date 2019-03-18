@@ -40,7 +40,7 @@
     background-color: gray;
 }
 
-.listIcon, .plusIcon, .fileIcon{
+.navIcons{
     position: relative;
     left:10px;
     top:40px;
@@ -110,6 +110,6 @@
     width:100%;
 }
 
-.nav-item:hover .listIcon,.nav-item:hover .plusIcon,.nav-item:hover .fileIcon{
+.nav-item:hover .navIcons{
     color:rgba(255,255,255,1);
 }

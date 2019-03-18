@@ -1,22 +1,21 @@
 import React, { Component } from 'react';
-import './QuotationPage.css';
 import PageHeader from '../PageHeader/PageHeader';
 
-class QuotationPage extends Component {
+class WorkItemsPage extends Component {
     constructor(props){
         super(props);
         this.state={
             pageName: this.props.pageName
         }
     }
+
     render() { 
         return ( 
-            <div className="QuotationPage MainWrapper">
+            <div className="WrokItemsPage MainWrapper">
                 <PageHeader pageName={this.state.pageName}/>
             </div>
-
-         );
+        );
     }
 }
  
-export default QuotationPage;
+export default WorkItemsPage;

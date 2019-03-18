@@ -28,20 +28,26 @@ class NavBar extends Component {
               <div className="sperator"></div>
               <ul className="navbar-nav">
                 <li className="nav-item" onClick={()=>this.props.onClick(this.props.items[0])}>
-                  <i className="fas fa-list-ul listIcon"></i>
+                  <i className="fas fa-list-ul listIcon navIcons"></i>
                   <div className="nav-link">{this.props.items[0]}</div>
                   <div className="underline">
                   </div>
                 </li>
                 <li className="nav-item" onClick={()=>this.props.onClick(this.props.items[1])}>
-                  <i className="fas fa-plus plusIcon"></i>
+                  <i className="fas fa-plus plusIcon navIcons"></i>
                   <div className="nav-link">{this.props.items[1]}</div>
                   <div className="underline">
                   </div>
                 </li>
                 <li className="nav-item" onClick={()=>this.props.onClick(this.props.items[2])}>
-                  <i className="fas fa-file fileIcon"></i>
+                  <i className="fas fa-file fileIcon navIcons"></i>
                   <div className="nav-link">{this.props.items[2]}</div>
+                  <div className="underline">
+                  </div>
+                </li>
+                <li className="nav-item" onClick={()=>this.props.onClick(this.props.items[3])}>
+                  <i class="fas fa-tools workItemsIcon navIcons"></i>
+                  <div className="nav-link">{this.props.items[3]}</div>
                   <div className="underline">
                   </div>
                 </li>

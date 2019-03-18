@@ -7,15 +7,16 @@ import QuotationPage from '../QuotationPage/QuotationPage';
 import UserProfilePage from '../UserProfilePage/UserProfilePage';
 import {Redirect} from 'react-router-dom';
 import { username } from '../LoginPage/LoginPage';
+import WorkItemsPage from '../WorkItemsPage/WorkItemsPage';
 
-export const navItems = ["Orders", "Import", "Quotations"];
+export const navItems = ["Orders", "Import", "Quotations", "Work Items"];
 
 
 class ControlStaffView extends Component {
     constructor(props){
       super(props);
       this.state = {
-        items:['Order List', 'Import Order', 'Quotations'], // nav items
+        items:navItems, // nav items
         orders:[],
         type: '',
         username: username,
@@ -67,7 +68,8 @@ class ControlStaffView extends Component {
               <SearchBar />
               {this.state.type === this.state.items[0]? <OrderList pageName={this.state.items[0]} totalOrders={this.state.totalOrders} orders={this.state.orders}/>:
               this.state.type === this.state.items[1]? <ImportPage pageName={this.state.items[1]}/>:
-              this.state.type === this.state.items[2]? <QuotationPage pageName={this.state.items[2]}/>:<UserProfilePage pageName='User Profile'/>}
+              this.state.type === this.state.items[2]? <QuotationPage pageName={this.state.items[2]}/>:
+              this.state.type === this.state.items[3]? <WorkItemsPage pageName={this.state.items[3]}/>:<UserProfilePage pageName='User Profile'/>}
               </>
             }
             {
