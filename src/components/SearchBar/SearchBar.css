@@ -1,0 +1,54 @@
+.SearchBar{
+    position: absolute;
+    top:0px;
+    left:200px;
+    height:80px;
+    width:100%;
+}
+
+.HKTLogo{
+    position: absolute;
+    top:15px;
+    right:225px;
+}
+
+.searchIcon{
+    position: absolute;
+    top:25px;
+    left: 400px;
+    font-size: 25px;
+    transition: 0.5s;
+}
+
+.textBar{
+    position: absolute;
+    top:15px;
+    left:250px;
+    height:50px;
+    width:150px;
+    border-bottom:1px solid grey;
+    transition: 0.5s;
+    color:rgba(172, 172, 172, 0.5);
+    padding:0px;
+}
+
+.textBar:focus{
+    outline: none;
+    width:350px;
+    color:black;
+}
+
+.textBar:not(.textBar:focus){
+    content:'';
+}
+
+.textBar:focus + i{
+    left:600px;
+}
+
+.selectOrderFields{
+    position: absolute;
+    top:30px;
+    left:50px;
+
+}

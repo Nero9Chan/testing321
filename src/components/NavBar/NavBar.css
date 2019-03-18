@@ -1,0 +1,115 @@
+.navbar{
+    position: absolute;
+    width:12%;
+    height:100%;
+    padding:0px;
+}
+
+@media only screen and (max-width: 1350px) {
+    .navbar{width: 15%;}
+}
+
+.navbar-nav{
+    position: absolute;
+    top:100px;
+
+}
+
+.nav-item{
+    margin-top:30px;
+    margin-bottom:30px;
+    cursor: pointer;
+    height:40px;
+}
+
+.nav-link{
+    color:white;
+    margin-left:35px;
+}
+
+.nav-item:hover + .listIcon{
+    color:rgba(255,255,255,1);
+}
+
+.sperator{
+    position: absolute;
+    top:80px;
+    width: 100%;
+    height:1px;
+    left:0px;
+    background-color: gray;
+}
+
+.listIcon, .plusIcon, .fileIcon{
+    position: relative;
+    left:10px;
+    top:40px;
+    color:rgba(255,255,255,.5);
+}
+
+.userIcon{
+    position: absolute;
+    top:20px;
+    left:20px;
+    font-size:40px;
+    color:rgba(255,255,255,.5);
+}
+
+.logoutIcon{
+    position: absolute;
+    bottom:20px;
+    left:20px;
+    font-size: 30px;
+    color:rgba(255,255,255,.5);
+    cursor: pointer;
+}
+
+.logoutWrapper:hover .logoutIcon, .logoutWrapper:hover .logoutTag{
+    color:rgba(255,255,255,1);
+}
+
+.logoutTag{
+    position: absolute;
+    bottom:20px;
+    left:60px;
+    color:rgba(255,255,255,.5);
+    cursor: pointer;
+}
+
+.username{
+    position: absolute;
+    top:30px;
+    left:70px;
+    color:rgba(255,255,255,.5);
+
+}
+
+.Wrapper{
+    cursor: pointer;
+}
+
+.Wrapper:hover .userIcon{
+    color:rgba(255,255,255,1);
+}
+
+.Wrapper:hover .username{
+    color:rgba(255,255,255,1);
+}
+
+.underline{
+    position: relative;
+    left:5px;
+    top:0px;
+    width:0;
+    height:1px;
+    background-color: white;
+    transition:0.4s;
+}
+
+.nav-item:hover .underline{
+    width:100%;
+}
+
+.nav-item:hover .listIcon,.nav-item:hover .plusIcon,.nav-item:hover .fileIcon{
+    color:rgba(255,255,255,1);
+}

@@ -1,0 +1,12 @@
+.MainWrapper{
+    position: absolute;
+    left:12%;
+    top:80px;
+    width:88%;
+    height:100%;
+    background-color:#efeff6;
+}
+
+@media only screen and (max-width: 1350px) {
+    .MainWrapper{width:85%;left:15%;}
+}
