@@ -85,6 +85,19 @@ app.get('/users/findET', (req,res)=>{
     });
 });
 
+app.get('/workitems', (req,res)=>{
+    const SELECT_ALL_WORKITEMS = `SELECT * FROM workitems`
+    connection.query(SELECT_ALL_WORKITEMS, (err, results)=>{
+        if(err){
+            return res.send(err)
+        }else{
+            return res.json({
+                data: results
+            })
+        }
+    });
+});
+
 // display all users
 app.get('/users', (req, res)=>{
     connection.query(SELECT_ALL_USERS, (err, results)=>{

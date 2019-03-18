@@ -8,33 +8,55 @@ class SearchBar extends Component {
         super(props);
         this.state = {
             selected:'',
-            searchItem:'',
+            keywords:'',
             searchField:''
         }
     }
 
     onChange = e =>{
         this.setState({
-            [e.target.name]: e.target.value
+            keywords: e.target.value
         })
         console.log(this.state.searchField);
-        console.log(e.target.name);
+        console.log(e.target);
+    }
+
+    selectOnChange = e => {
+        this.setState({
+            searchField: e.target.value
+        })
     }
 
     onBlur = e => {
         e.target.value = '';
         this.setState({
-            [e.target.name]:''
+            keywords:''
         })
     }
 
+
     render() { 
-        return ( 
+        return (
+        <> 
+        {this.props.pageType !== "Orders"? this.props.pageType !== "Work Items"? <></>
+        : // render order list seach bar
         <div className="SearchBar">
             <img src={HKTLogo} alt="logo" width="200px" className="HKTLogo"></img>
-            <input type="text" className="textBar" placeholder="Search..." name={this.state.searchItem} onChange={this.onChange} onBlur={this.onBlur}></input>
+            <input type="text" className="textBar" placeholder="Search..." name={this.state.keywords} onChange={this.onChange} onBlur={this.onBlur}></input>
             <i className="fas fa-search searchIcon"></i>
-            <select value={this.state.searchField} className="selectOrderFields" onChange={this.onChange}>
+            <select value={this.state.searchField} className="selectOrderFields" onChange={this.selectOnChange}>
+                <option value="Work_item_ID">Work_item_ID</option>
+                <option value="Description">Description</option>
+                <option value="unit">unit</option>
+                <option value="unit_rate">unit_rate</option>
+            </select>
+        </div>
+        : // render work items seach bar
+        <div className="SearchBar">
+            <img src={HKTLogo} alt="logo" width="200px" className="HKTLogo"></img>
+            <input type="text" className="textBar" placeholder="Search..." name={this.state.keywords} onChange={this.onChange} onBlur={this.onBlur}></input>
+            <i className="fas fa-search searchIcon"></i>
+            <select value={this.state.searchField} className="selectOrderFields" onChange={this.selectOnChange}>
                 <option value="Order#">Order#</option>
                 <option value="BSN#">BSN</option>
                 <option value="OrderStatus">Status</option>
@@ -44,8 +66,11 @@ class SearchBar extends Component {
                 <option value="team_id">Team ID</option>
             </select>
         </div>
+        }
+        </>
         );
     }
 }
  
+
 export default SearchBar;

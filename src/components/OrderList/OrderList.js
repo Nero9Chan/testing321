@@ -16,7 +16,7 @@ class OrderList extends Component {
         return d.slice(0,10);
     }
 
-    AppendOrders = _ => {
+    appendOrders = _ => {
         let orders = this.props.orders;
         let tr = [];
         let td = [];
@@ -62,7 +62,7 @@ class OrderList extends Component {
                     </tr>
                 </thead>
                 <tbody>
-                    {this.AppendOrders()}
+                    {this.appendOrders()}
                 </tbody>
             </table>
         </div>
