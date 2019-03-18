@@ -9,14 +9,11 @@ import {Redirect} from 'react-router-dom';
 import { username } from '../LoginPage/LoginPage';
 import WorkItemsPage from '../WorkItemsPage/WorkItemsPage';
 
-export const navItems = ["Orders", "Import", "Quotations", "Work Items"];
-
-
 class ControlStaffView extends Component {
     constructor(props){
       super(props);
       this.state = {
-        items:navItems, // nav items
+        items:["Orders", "Import", "Quotations", "Work Items"], // nav items
         orders:[],
         type: '',
         username: username,

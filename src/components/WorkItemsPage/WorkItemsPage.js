@@ -38,7 +38,7 @@ class WorkItemsPage extends Component {
             td.push(<td key={i+1*j}>{items[i].work_item_id}</td>)
             td.push(<td key={i+2*j}>{items[i].description}</td>)
             td.push(<td key={i+3*j}>{items[i].unit}</td>)
-            td.push(<td key={i+4*j}>{items[i].unit_rate}</td>)
+            td.push(<td key={i+4*j}>{items[i].unit_rate===0?'-':'$'+items[i].unit_rate}</td>)
             tr.push(<tr key={i+5*j}>{td}</tr>);    
             td = [];
         }
@@ -58,10 +58,10 @@ class WorkItemsPage extends Component {
                             <th width="60%">
                                 Description
                             </th>
-                            <th width="10%">
+                            <th width="15%">
                                 unit
                             </th>
-                            <th width="20%">
+                            <th width="15%">
                                 unit_rate
                             </th>
                         </tr>

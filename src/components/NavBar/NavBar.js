@@ -1,15 +1,14 @@
 import React, { Component } from 'react';
 import './NavBar.css';
-import { navItems } from '../ControlStaffView/ControlStraffView';
 
 class NavBar extends Component {
 
     createNavItems = _ => {
         let items = [];
-        for(let i = 0; i < navItems.length; i++){
+        for(let i = 0; i < this.props.items.length; i++){
             items.push(
                 <li key = {i}>
-                    {navItems[i]}
+                    {this.props.items[i]}
                 </li>
             )
         }
@@ -45,12 +44,17 @@ class NavBar extends Component {
                   <div className="underline">
                   </div>
                 </li>
+                {this.props.items.length===4?
+                // render the forth item (HKTCS view)
                 <li className="nav-item" onClick={()=>this.props.onClick(this.props.items[3])}>
                   <i class="fas fa-tools workItemsIcon navIcons"></i>
                   <div className="nav-link">{this.props.items[3]}</div>
                   <div className="underline">
                   </div>
                 </li>
+                :
+                <></>
+                }
               </ul>
               <div className="logoutWrapper">
                 <i className="fas fa-sign-out-alt logoutIcon" onClick={this.props.logout}></i>

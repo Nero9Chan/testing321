@@ -11,9 +11,8 @@ class UploadPage extends Component {
     }
     render() { 
         return ( 
-            <div className="UploadPage">
+            <div className="UploadPage MainWrapper">
                 <PageHeader pageName={this.state.pageName}/>
-                UploadPage
             </div> 
         );
     }
