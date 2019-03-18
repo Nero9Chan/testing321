@@ -8,6 +8,7 @@ import UserProfilePage from '../UserProfilePage/UserProfilePage';
 import {Redirect} from 'react-router-dom';
 import { username } from '../LoginPage/LoginPage';
 import WorkItemsPage from '../WorkItemsPage/WorkItemsPage';
+import OrderDetails from '../OrderList/OrderDetails/OrderDetails';
 
 class ControlStaffView extends Component {
     constructor(props){
@@ -63,10 +64,11 @@ class ControlStaffView extends Component {
               <>
               <NavBar onClick={this.navOnClick} username={this.state.username} logout={this.logout} items={this.state.items}/>
               <SearchBar pageType={this.state.type}/>
-              {this.state.type === this.state.items[0]? <OrderList pageName={this.state.items[0]} totalOrders={this.state.totalOrders} orders={this.state.orders}/>:
+              {this.state.type === this.state.items[0]? <OrderList onClick={this.navOnClick} pageName={this.state.items[0]} totalOrders={this.state.totalOrders} orders={this.state.orders}/>:
               this.state.type === this.state.items[1]? <ImportPage pageName={this.state.items[1]}/>:
               this.state.type === this.state.items[2]? <QuotationPage pageName={this.state.items[2]}/>:
-              this.state.type === this.state.items[3]? <WorkItemsPage pageName={this.state.items[3]}/>:<UserProfilePage pageName='User Profile'/>}
+              this.state.type === this.state.items[3]? <WorkItemsPage pageName={this.state.items[3]}/>:
+              this.state.type === 'details'? <OrderDetails pageName='Order Details'/>:<UserProfilePage pageName='User Profile'/>}
               </>
             }
             {

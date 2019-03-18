@@ -22,7 +22,9 @@ class OrderList extends Component {
         let td = [];
         let j = this.props.totalOrders;
         for(let i = 0; i < j; i++){
-            td.push(<td key={i+1*j}>{orders[i].order_number}</td>)
+            td.push(<td key={i+1*j}>
+                <div className="orderNo" onClick={()=>this.props.onClick('details')}>{orders[i].order_number}</div>
+            </td>)
             td.push(<td key={i+2*j}>{orders[i].order_status}</td>)
             td.push(<td key={i+3*j}>{this.convertDateTime(orders[i].assigning_date)}</td>)
             td.push(<td key={i+4*j}>{this.convertDateTime(orders[i].pre_visit_date)}</td>)

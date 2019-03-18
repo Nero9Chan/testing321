@@ -49,7 +49,7 @@ class WorkItemsPage extends Component {
         return ( 
             <div className="WrokItemsPage MainWrapper">
                 <PageHeader pageName={this.state.pageName}/>
-                <table border="1px" className="table table-hover table-striped table-bordered orderTable">
+                <table border="1px" className="table table-hover table-striped table-bordered workItemTable">
                     <thead className="thead-dark">
                         <tr>
                             <th width="10%">

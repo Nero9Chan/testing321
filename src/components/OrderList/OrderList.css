@@ -6,3 +6,7 @@
 }
 
 
+.orderNo{
+    cursor: pointer;
+    text-decoration: underline;
+}
