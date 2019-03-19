@@ -51,7 +51,6 @@ class ControlStaffView extends Component {
     } // get orders from db
     
     logout = _ => {
-      console.log("1222")
       this.setState({
         logout:true
       })
@@ -68,7 +67,7 @@ class ControlStaffView extends Component {
               this.state.type === this.state.items[1]? <ImportPage pageName={this.state.items[1]}/>:
               this.state.type === this.state.items[2]? <QuotationPage pageName={this.state.items[2]}/>:
               this.state.type === this.state.items[3]? <WorkItemsPage pageName={this.state.items[3]}/>:
-              this.state.type === 'details'? <OrderDetails pageName='Order Details'/>:<UserProfilePage pageName='User Profile'/>}
+              this.state.type === 'details'? <OrderDetails pageName='Order Details' />:<UserProfilePage pageName='User Profile'/>}
               </>
             }
             {

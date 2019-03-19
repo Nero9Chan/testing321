@@ -49,6 +49,8 @@ class WorkItemsPage extends Component {
         return ( 
             <div className="WrokItemsPage MainWrapper">
                 <PageHeader pageName={this.state.pageName}/>
+                <i className="fas fa-edit editIcon"></i>
+                <div className="editTag">Edit</div>
                 <table border="1px" className="table table-hover table-striped table-bordered workItemTable">
                     <thead className="thead-dark">
                         <tr>

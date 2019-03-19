@@ -47,7 +47,7 @@ class NavBar extends Component {
                 {this.props.items.length===4?
                 // render the forth item (HKTCS view)
                 <li className="nav-item" onClick={()=>this.props.onClick(this.props.items[3])}>
-                  <i class="fas fa-tools workItemsIcon navIcons"></i>
+                  <i className="fas fa-tools workItemsIcon navIcons"></i>
                   <div className="nav-link">{this.props.items[3]}</div>
                   <div className="underline">
                   </div>

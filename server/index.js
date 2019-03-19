@@ -46,7 +46,7 @@ app.get('/users/findHKTCS', (req,res)=>{
     const {username, password}=req.query;
     const FIND_HKTCS_USER = 
     `
-    SELECT users.username 
+    SELECT *
     FROM users u, hktcontrolstaffs hktcs 
     JOIN users ON hktcs.username = users.username 
     WHERE u.username='${username}' AND u.password='${password}' AND hktcs.username='${username}'
@@ -68,7 +68,7 @@ app.get('/users/findET', (req,res)=>{
     const {username, password}=req.query;
     const FIND_ET_USER = 
     `
-    SELECT users.username 
+    SELECT *
     FROM users u, engineeringteams et 
     JOIN users ON et.username = users.username 
     WHERE u.username='${username}' AND u.password='${password}' AND et.username='${username}'

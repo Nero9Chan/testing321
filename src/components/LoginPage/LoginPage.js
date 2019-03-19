@@ -4,6 +4,7 @@ import './LoginPage.css';
 import {Redirect} from 'react-router';
 
 export let username = ''; // 
+export let userObject = null;
 
 class LoginPage extends Component {
   constructor(props){
@@ -13,7 +14,8 @@ class LoginPage extends Component {
       password:'',
       isAuthenticated:false,
       type:'',
-      errorMessage:''
+      errorMessage:'',
+      userObject:null
     }
   }  
 
@@ -30,9 +32,11 @@ class LoginPage extends Component {
         console.log(res.data);
         if(res.data.length>0){
           this.setState({
+            userObject: res.data[0],
             isAuthenticated: true,
             type: 'ControlStaffView'
           })
+          userObject = res.data[0];
         }else{
           return false;
         }
@@ -46,9 +50,11 @@ class LoginPage extends Component {
           .then((res) => {
             if(res.data.length>0){
               this.setState({
+                userObject: res.data[0],
                 isAuthenticated: true,
                 type: 'EngineTeamView'
               })
+              userObject = res.data[0];
             }else{
               return false;
             }
