@@ -6,7 +6,7 @@ import ImportPage from './ImportPage/ImportPage';
 import QuotationPage from '../QuotationPage/QuotationPage';
 import UserProfilePage from '../UserProfilePage/UserProfilePage';
 import {Redirect} from 'react-router-dom';
-import { username } from '../LoginPage/LoginPage';
+import { userObject } from '../LoginPage/LoginPage';
 import WorkItemsPage from '../WorkItemsPage/WorkItemsPage';
 import OrderDetails from '../OrderList/OrderDetails/OrderDetails';
 
@@ -17,8 +17,7 @@ class ControlStaffView extends Component {
         items:["Orders", "Import", "Quotations", "Work Items"], // nav items
         orders:[],
         type: '',
-        username: username,
-        //username: this.props.location.state.username, // pass username to navbar
+        username: userObject.username,
         totalOrders: 0
       }
     }
@@ -56,7 +55,7 @@ class ControlStaffView extends Component {
       })
     }
 
-    render() { 
+    render() {
         return (
           <div>
             {this.state.username===''?<Redirect to={{pathname: `/`}}/>:
@@ -67,10 +66,11 @@ class ControlStaffView extends Component {
               this.state.type === this.state.items[1]? <ImportPage pageName={this.state.items[1]}/>:
               this.state.type === this.state.items[2]? <QuotationPage pageName={this.state.items[2]}/>:
               this.state.type === this.state.items[3]? <WorkItemsPage pageName={this.state.items[3]}/>:
-              this.state.type === 'details'? <OrderDetails pageName='Order Details' />:<UserProfilePage pageName='User Profile'/>}
+              this.state.type === 'details'? <OrderDetails pageName='Order Details' />:
+              this.state.type === 'profile'? <UserProfilePage pageName='User Profile'/>:<></>}
               </>
-            }
-            {
+              }
+              {
                 this.state.logout===true?<Redirect to={{pathname: `/`}}/>:<></>
               }
           </div>

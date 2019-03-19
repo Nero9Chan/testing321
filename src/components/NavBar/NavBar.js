@@ -18,7 +18,7 @@ class NavBar extends Component {
     render() { 
         return ( 
             <div className="navbar bg-dark navbar-dark">
-            <div className="Wrapper user" onClick={()=>this.props.onClick('user')}>
+            <div className="Wrapper user" onClick={()=>this.props.onClick('profile')}>
               <i className="fas fa-user-circle userIcon"></i>
               <div className="username">
                 {this.props.username}

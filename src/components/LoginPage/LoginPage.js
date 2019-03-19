@@ -3,8 +3,8 @@ import logo from './HKT.png';
 import './LoginPage.css';
 import {Redirect} from 'react-router';
 
-export let username = ''; // 
-export let userObject = null;
+export let userObject = {username:''};
+export let userType = '';
 
 class LoginPage extends Component {
   constructor(props){
@@ -13,9 +13,7 @@ class LoginPage extends Component {
       username:'',
       password:'',
       isAuthenticated:false,
-      type:'',
-      errorMessage:'',
-      userObject:null
+      errorMessage:''
     }
   }  
 
@@ -31,12 +29,11 @@ class LoginPage extends Component {
       .then((res) => {
         console.log(res.data);
         if(res.data.length>0){
-          this.setState({
-            userObject: res.data[0],
-            isAuthenticated: true,
-            type: 'ControlStaffView'
-          })
           userObject = res.data[0];
+          userType = 'HKTCS';
+          this.setState({
+            isAuthenticated: true,
+          })
         }else{
           return false;
         }
@@ -49,12 +46,11 @@ class LoginPage extends Component {
           .then((res) => res.json())
           .then((res) => {
             if(res.data.length>0){
-              this.setState({
-                userObject: res.data[0],
-                isAuthenticated: true,
-                type: 'EngineTeamView'
-              })
               userObject = res.data[0];
+              userType = 'ET';
+              this.setState({
+                isAuthenticated: true,
+              })
             }else{
               return false;
             }
@@ -63,7 +59,6 @@ class LoginPage extends Component {
     } // end of method checkET
 
     onSubmit = e => {
-      username = this.state.username; // export to other components
       e.preventDefault();
       if(this.state.password === '' || this.state.username === ''){
         this.setState({
@@ -88,7 +83,7 @@ class LoginPage extends Component {
       return(
         <div>
           {this.state.isAuthenticated ? // redirect to HKTCS view or ET view if authenticated
-          <Redirect to={{pathname: `/${this.state.type}`}}/>:(
+          <Redirect to={{pathname: `/${userType}`}}/>:(
             <div className="login container">
               <img src={logo} alt="Logo"/>
               {

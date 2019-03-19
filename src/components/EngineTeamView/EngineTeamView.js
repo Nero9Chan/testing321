@@ -6,7 +6,8 @@ import OrderList from '../OrderList/OrderList';
 import NavBar from '../NavBar/NavBar';
 import SearchBar from '../SearchBar/SearchBar';
 import {Redirect} from 'react-router';
-import { username } from '../LoginPage/LoginPage';
+import { userObject } from '../LoginPage/LoginPage';
+import OrderDetails from '../OrderList/OrderDetails/OrderDetails';
 
 class EngineTeamView extends Component {
     constructor(props){
@@ -15,7 +16,7 @@ class EngineTeamView extends Component {
        items:['Orders', 'Make Quotation', 'Quotations'], // nav items
         orders:[],
         type: '',
-        username: username, // pass username to navbar
+        username: userObject.username, // pass username to navbar
         totalOrders: 0,
         logout:false
       }
@@ -61,7 +62,9 @@ class EngineTeamView extends Component {
               <SearchBar pageType={this.state.type}/>
               {this.state.type === this.state.items[0]? <OrderList pageName={this.state.items[0]}/>:
               this.state.type === this.state.items[1]? <UploadPage pageName={this.state.items[1]}/>:
-              this.state.type === this.state.items[2]? <QuotationPage pageName={this.state.items[2]}/>: <UserProfilePage pageName='User Profile'/>}
+              this.state.type === this.state.items[2]? <QuotationPage pageName={this.state.items[2]}/>:
+              this.state.type === 'details'? <OrderDetails pageName='Order Details' />:
+              this.state.type === 'profile'? <UserProfilePage pageName='User Profile'/>:<></>}
               </>
               }
               {

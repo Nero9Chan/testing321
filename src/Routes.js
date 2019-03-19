@@ -11,8 +11,8 @@ const Routes = () => (
       <Switch>
         <Route exact path='/' component={LoginPage}/>
         <Route path='/LoginPage' component={LoginPage}/>
-        <Route path='/ControlStaffView' component={ControlStaffView}/>
-        <Route path='/EngineTeamView' component={EngineTeamView}/>
+        <Route path='/HKTCS' component={ControlStaffView}/>
+        <Route path='/ET' component={EngineTeamView}/>
       </Switch>
     </BrowserRouter>
 );
