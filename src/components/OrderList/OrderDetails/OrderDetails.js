@@ -27,7 +27,7 @@ class OrderDetails extends Component {
                 </div>
                 <div className="col-lg-12">
                     <div className="card">
-                        <table className="table">
+                        <table className="table table-hover table-striped">
                         <tbody>
                             <tr>
                             <th className="orderNoField">Order Number: </th>
