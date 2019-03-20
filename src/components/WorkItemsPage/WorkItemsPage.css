@@ -1,33 +1,6 @@
 .workItemTable {
     position: absolute;
-    top: 120px;
     text-align: center;
     width: 100%;
     margin: 10px
-}
-
-.editIcon {
-    position: absolute;
-    top:85px;
-    right:10px;
-    font-size:30px;
-    cursor: pointer;
-}
-
-.editTag{
-    position: absolute;
-    top:50px;
-    padding-left:10px;
-    padding-right:10px;
-    right:15px;
-    font-size:18px;
-    background-color:rgba(69, 77, 85, 0.3);
-    color:black;
-    border-radius: 15%;
-    opacity:0;
-    transition: 0.2s;
-}
-
-.editIcon:hover + .editTag{
-    opacity:1;
 }

@@ -22,6 +22,10 @@ class UserProfilePage extends Component {
         return ( 
             <div className="UserProfilePage MainWrapper">
                 <PageHeader pageName={this.state.pageName} />
+                <div className="editBtnWrapper">
+                    <i className="fas fa-edit editIcon"></i>
+                    <div className="editTag">Edit</div>
+                </div>
                 <div className="col-lg-12">
                     <div className="card">
                         <table className="table">

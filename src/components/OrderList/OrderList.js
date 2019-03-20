@@ -10,12 +10,6 @@ class OrderList extends Component {
             pageName: this.props.pageName
         }
     }
-
-    convertDateTime = date => {
-        let d = date.split('');
-        return d.slice(0,10);
-    } // convert date time to normal format
-
     appendOrders = _ => {
         let orders = this.props.orders;
         let tr = [];
@@ -26,9 +20,9 @@ class OrderList extends Component {
                 <div className="orderNo" onClick={()=>this.props.onClick('details', i)}>{orders[i].order_number}</div>
             </td>)
             td.push(<td key={i+2*j}>{orders[i].order_status}</td>)
-            td.push(<td key={i+3*j}>{this.convertDateTime(orders[i].assigning_date)}</td>)
-            td.push(<td key={i+4*j}>{this.convertDateTime(orders[i].pre_visit_date)}</td>)
-            td.push(<td key={i+5*j}>{this.convertDateTime(orders[i].wiring_date)}</td>)
+            td.push(<td key={i+3*j}>{orders[i].assigning_date}</td>)
+            td.push(<td key={i+4*j}>{orders[i].pre_visit_date}</td>)
+            td.push(<td key={i+5*j}>{orders[i].wiring_date}</td>)
             td.push(<td key={i+6*j}>{orders[i].team_id}</td>)
             tr.push(<tr key={i+7*j}>{td}</tr>);    
             td = [];
