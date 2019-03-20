@@ -3,6 +3,7 @@
     width:12%;
     height:100%;
     padding:0px;
+    background-color: #263544;
 }
 
 @media only screen and (max-width: 1350px) {
@@ -22,12 +23,8 @@
 }
 
 .nav-link{
-    color:white;
+    color:#b7c0cd;
     margin-left:35px;
-}
-
-.nav-item:hover + .listIcon{
-    color:rgba(255,255,255,1);
 }
 
 .sperator{
@@ -43,7 +40,7 @@
     position: relative;
     left:10px;
     top:40px;
-    color:rgba(255,255,255,.5);
+    color:#b7c0cd;
 }
 
 .userIcon{
@@ -51,28 +48,31 @@
     top:20px;
     left:20px;
     font-size:40px;
-    color:rgba(255,255,255,.5);
+    color:#b7c0cd;
 }
 
 .logoutIcon{
-    position: absolute;
-    bottom:20px;
-    left:20px;
-    font-size: 30px;
-    color:rgba(255,255,255,.5);
-    cursor: pointer;
-}
-
-.logoutWrapper:hover .logoutIcon, .logoutWrapper:hover .logoutTag{
-    color:rgba(255,255,255,1);
+    position:relative;
+    top:0px;
 }
 
 .logoutTag{
+    position: relative;
+    top:-30px;
+    left:30px;
+}
+
+.logoutWrapper{
     position: absolute;
     bottom:20px;
-    left:60px;
+    left:20px;
+    font-size: 20px;
     color:rgba(255,255,255,.5);
     cursor: pointer;
+}
+
+.logoutWrapper:hover {
+    color:rgba(255,255,255,1);
 }
 
 .username{
@@ -109,6 +109,6 @@
     width:100%;
 }
 
-.nav-item:hover .navIcons{
+.nav-item:hover .navIcons, .nav-item:hover .nav-link{
     color:rgba(255,255,255,1);
 }

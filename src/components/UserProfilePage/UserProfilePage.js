@@ -22,23 +22,35 @@ class UserProfilePage extends Component {
         return ( 
             <div className="UserProfilePage MainWrapper">
                 <PageHeader pageName={this.state.pageName} />
-                <div className="usernameField">Username: </div>
-                <div className="usernameData">{userObject.username}</div>
-                {userType === 'HKTCS'?
-                    <> 
-                    <div className="staff_idField">Staff ID: </div>
-                    <div className="staff_idData">{userObject.staff_id}</div>
-                    </>
-                    :
-                    <>
-                    <div className="tean_idField">Team ID: </div>
-                    <div className="tean_idData">{userObject.team_id}</div>
-                    </>
-                }
-                <div className="emailField">Email: </div>
-                <div className="emailData">{userObject.email}</div>
-                <div className="telField">Tel: </div>
-                <div className="telData">{userObject.tel}</div>
+                <div className="col-lg-12">
+                    <div className="card">
+                        <table className="table">
+                            <tr>
+                            <th className="usernameField">Username: </th>
+                            <td className="usernameData">{userObject.username}</td>
+                            </tr>
+                            {userType === 'HKTCS'?
+                                <tr> 
+                                <th className="staff_idField">Staff ID: </th>
+                                <td className="staff_idData">{userObject.staff_id}</td>
+                                </tr>
+                                :
+                                <tr>
+                                <th className="tean_idField">Team ID: </th>
+                                <td className="tean_idData">{userObject.team_id}</td>
+                                </tr>
+                            }
+                            <tr>
+                            <th className="emailField">Email: </th>
+                            <td className="emailData">{userObject.email}</td>
+                            </tr>
+                            <tr>
+                            <th className="telField">Tel: </th>
+                            <td className="telData">{userObject.tel}</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
             </div>
          );
     }

@@ -58,7 +58,6 @@ class SearchBar extends Component {
             <i className="fas fa-search searchIcon"></i>
             <select value={this.state.searchField} className="selectOrderFields" onChange={this.selectOnChange}>
                 <option value="Order#">Order#</option>
-                <option value="BSN#">BSN</option>
                 <option value="OrderStatus">Status</option>
                 <option value="AD">Assigning Date</option>
                 <option value="PVD">Pre-visit Date</option>

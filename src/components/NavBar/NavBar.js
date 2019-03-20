@@ -17,7 +17,7 @@ class NavBar extends Component {
 
     render() { 
         return ( 
-            <div className="navbar bg-dark navbar-dark">
+            <div className="navbar">
             <div className="Wrapper user" onClick={()=>this.props.onClick('profile')}>
               <i className="fas fa-user-circle userIcon"></i>
               <div className="username">
@@ -58,7 +58,7 @@ class NavBar extends Component {
               </ul>
               <div className="logoutWrapper">
                 <i className="fas fa-sign-out-alt logoutIcon" onClick={this.props.logout}></i>
-                  <div className="logoutTag">
+                  <div className="logoutTag" onClick={this.props.logout}>
                     Logout
                   </div>
               </div>

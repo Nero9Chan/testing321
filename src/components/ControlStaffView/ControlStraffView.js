@@ -10,6 +10,8 @@ import { userObject } from '../LoginPage/LoginPage';
 import WorkItemsPage from '../WorkItemsPage/WorkItemsPage';
 import OrderDetails from '../OrderList/OrderDetails/OrderDetails';
 
+export let orderObjects;
+
 class ControlStaffView extends Component {
     constructor(props){
       super(props);
@@ -18,7 +20,8 @@ class ControlStaffView extends Component {
         orders:[],
         type: '',
         username: userObject.username,
-        totalOrders: 0
+        totalOrders: 0,
+        orderIndex:0
       }
     }
 
@@ -36,6 +39,13 @@ class ControlStaffView extends Component {
       })
     } // change the existing type of the page
 
+    navOnClick = (t,index) => {
+      this.setState({
+        type:t,
+        orderIndex: index
+      })
+    }
+
     getOrders = _ => {
       fetch('http://localhost:8080/orders')
         .then(response => response.json())
@@ -45,6 +55,7 @@ class ControlStaffView extends Component {
             totalOrders: response.data.length,
             orders: response.data
           })
+          orderObjects = response.data;
         })
         .catch(err => console.log(err))
     } // get orders from db
@@ -66,7 +77,7 @@ class ControlStaffView extends Component {
               this.state.type === this.state.items[1]? <ImportPage pageName={this.state.items[1]}/>:
               this.state.type === this.state.items[2]? <QuotationPage pageName={this.state.items[2]}/>:
               this.state.type === this.state.items[3]? <WorkItemsPage pageName={this.state.items[3]}/>:
-              this.state.type === 'details'? <OrderDetails pageName='Order Details' />:
+              this.state.type === 'details'? <OrderDetails pageName='Order Details' orderIndex={this.state.orderIndex}/>:
               this.state.type === 'profile'? <UserProfilePage pageName='User Profile'/>:<></>}
               </>
               }
