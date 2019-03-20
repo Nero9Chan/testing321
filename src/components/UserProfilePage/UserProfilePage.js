@@ -29,6 +29,7 @@ class UserProfilePage extends Component {
                 <div className="col-lg-12">
                     <div className="card">
                         <table className="table">
+                        <tbody>
                             <tr>
                             <th className="usernameField">Username: </th>
                             <td className="usernameData">{userObject.username}</td>
@@ -52,6 +53,7 @@ class UserProfilePage extends Component {
                             <th className="telField">Tel: </th>
                             <td className="telData">{userObject.tel}</td>
                             </tr>
+                            </tbody>
                         </table>
                     </div>
                 </div>

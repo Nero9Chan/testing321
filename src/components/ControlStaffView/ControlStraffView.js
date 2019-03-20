@@ -9,6 +9,7 @@ import {Redirect} from 'react-router-dom';
 import { userObject } from '../LoginPage/LoginPage';
 import WorkItemsPage from '../WorkItemsPage/WorkItemsPage';
 import OrderDetails from '../OrderList/OrderDetails/OrderDetails';
+import TeamsPage from '../TeamsPage/TeamsPage';
 
 export let orderObjects;
 
@@ -16,7 +17,7 @@ class ControlStaffView extends Component {
     constructor(props){
       super(props);
       this.state = {
-        items:["Orders", "Import", "Quotations", "Work Items"], // nav items
+        items:["Orders", "Import", "Quotations", "Work Items", "Teams"], // nav items
         orders:[],
         type: '',
         username: userObject.username,
@@ -77,6 +78,7 @@ class ControlStaffView extends Component {
               this.state.type === this.state.items[1]? <ImportPage pageName={this.state.items[1]}/>:
               this.state.type === this.state.items[2]? <QuotationPage pageName={this.state.items[2]}/>:
               this.state.type === this.state.items[3]? <WorkItemsPage pageName={this.state.items[3]}/>:
+              this.state.type === this.state.items[4]? <TeamsPage pageName={this.state.items[4]}/>:
               this.state.type === 'details'? <OrderDetails pageName='Order Details' orderIndex={this.state.orderIndex}/>:
               this.state.type === 'profile'? <UserProfilePage pageName='User Profile'/>:<></>}
               </>
