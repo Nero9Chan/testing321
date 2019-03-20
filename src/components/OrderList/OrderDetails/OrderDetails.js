@@ -30,7 +30,7 @@ class OrderDetails extends Component {
                         <table className="table">
                         <tbody>
                             <tr>
-                            <th className="orderNoField">Order No.: </th>
+                            <th className="orderNoField">Order Number: </th>
                             <td className="orderNoData">{orderObjects[i].order_number}</td>
                             </tr>
                             <tr>
