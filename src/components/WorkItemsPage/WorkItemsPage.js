@@ -6,9 +6,10 @@ class WorkItemsPage extends Component {
     constructor(props){
         super(props);
         this.state={
-            pageName: this.props.pageName,
+            pageName: 'Work Items',
             items:null,
-            totalItems:0
+            totalItems:0,
+            workitem_type:'ATG'
         }
     }
 
@@ -17,7 +18,7 @@ class WorkItemsPage extends Component {
     }
 
     getitems = _ => {
-        fetch('http://localhost:8080/workitems')
+        fetch(`http://localhost:8080/workitems?type=${this.state.workitem_type}`)
           .then(response => response.json())
           .then(response => {
             console.log(response.data[0].work_item_id)

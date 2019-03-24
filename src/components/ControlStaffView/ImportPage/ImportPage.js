@@ -6,7 +6,7 @@ class ImportPage extends Component {
     constructor(props){
         super(props);
         this.state={
-            pageName: this.props.pageName
+            pageName: 'Import'
         }
     }
 

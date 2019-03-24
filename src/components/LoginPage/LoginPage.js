@@ -23,14 +23,14 @@ class LoginPage extends Component {
         });
     }
 
-    checkHKTCS = _ => {
-      fetch(`http://localhost:8080/users/findHKTCS?username=${this.state.username}&password=${this.state.password}`)
+    validateUser = _ => {
+      fetch(`http://localhost:8080/users/validation?username=${this.state.username}&password=${this.state.password}`)
       .then((res) => res.json())
       .then((res) => {
-        console.log(res.data);
+        console.log(res.data[0].username);
         if(res.data.length>0){
           userObject = res.data[0];
-          userType = 'HKTCS';
+          userType = res.data[0].user_type;
           this.setState({
             isAuthenticated: true,
           })
@@ -39,24 +39,7 @@ class LoginPage extends Component {
         }
       })
       .catch(err => console.log(err))
-    } // end of method checkHKTCS
-
-    checkET = _ => {
-      fetch(`http://localhost:8080/users/findET?username=${this.state.username}&password=${this.state.password}`)
-          .then((res) => res.json())
-          .then((res) => {
-            if(res.data.length>0){
-              userObject = res.data[0];
-              userType = 'ET';
-              this.setState({
-                isAuthenticated: true,
-              })
-            }else{
-              return false;
-            }
-          })
-          .catch(err => console.log(err))
-    } // end of method checkET
+    }
 
     onSubmit = e => {
       e.preventDefault();
@@ -69,12 +52,10 @@ class LoginPage extends Component {
         this.setState({
           errorMessage: ''
         }) // end of method setState
-        if(!this.checkHKTCS()){
-          if(!this.checkET()){
-            this.setState({
-              errorMessage: 'Incorrect username or password'
-            }) // end of method setState
-          } // end of validation username and password from ET DB
+        if(!this.validateUser()){
+          this.setState({
+            errorMessage: 'Incorrect username or password'
+          }) 
         } // end of validating username and password from HKTCS DB
       } // end of checking empty
     } // end of onSubmit method
@@ -83,7 +64,7 @@ class LoginPage extends Component {
       return(
         <div>
           {this.state.isAuthenticated ? // redirect to HKTCS view or ET view if authenticated
-          <Redirect to={{pathname: `/${userType}`}}/>:(
+          <Redirect to={{pathname: `/main`}}/>:(
             <div className="login container">
               <img src={logo} alt="Logo"/>
               {

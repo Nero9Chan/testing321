@@ -8,55 +8,72 @@ class UserProfilePage extends Component {
     constructor(props){
         super(props);
         this.state={
-            pageName: this.props.pageName,
-            type: this.props.type,
-            userObject: userObject
+            pageName: 'User',
+            userDetails: {}
         }
     }
 
+    componentDidMount(){
+        this.getUserDetails();
+    }
 
+    getUserDetails = _ => {
+        fetch(`http://localhost:8080/users/${userType}_details?username=${userObject.username}`)
+      .then((res) => res.json())
+      .then((res) => {
+        this.setState({
+            userDetails: res.data[0]
+        })
+      })
+      .catch(err => console.log(err))
+    }
 
     render() {
-        let userObject = this.state.userObject;
-        console.log(userObject.staff_id!==null);
+        const userDetails = this.state.userDetails;
         return ( 
             <div className="UserProfilePage MainWrapper">
                 <PageHeader pageName={this.state.pageName} />
+                
+                {/*Edit button*/}
                 <div className="editBtnWrapper">
                     <i className="fas fa-edit editIcon"></i>
                     <div className="editTag">Edit</div>
                 </div>
+                {/*End of Edit button*/}
+
+                {/*Profile table*/}
                 <div className="col-lg-12">
                     <div className="card">
                         <table className="table">
                         <tbody>
                             <tr>
                             <th className="usernameField">Username: </th>
-                            <td className="usernameData">{userObject.username}</td>
+                            <td className="usernameData">{userDetails.username}</td>
                             </tr>
-                            {userType === 'HKTCS'?
+                            {userType === 'hktcs'?
                                 <tr> 
                                 <th className="staff_idField">Staff ID: </th>
-                                <td className="staff_idData">{userObject.staff_id}</td>
+                                <td className="staff_idData">{userDetails.staff_id}</td>
                                 </tr>
                                 :
                                 <tr>
                                 <th className="tean_idField">Team ID: </th>
-                                <td className="tean_idData">{userObject.team_id}</td>
+                                <td className="tean_idData">{userDetails.team_id}</td>
                                 </tr>
                             }
                             <tr>
                             <th className="emailField">Email: </th>
-                            <td className="emailData">{userObject.email}</td>
+                            <td className="emailData">{userDetails.email}</td>
                             </tr>
                             <tr>
                             <th className="telField">Tel: </th>
-                            <td className="telData">{userObject.tel}</td>
+                            <td className="telData">{userDetails.tel}</td>
                             </tr>
                             </tbody>
                         </table>
                     </div>
                 </div>
+                {/*End of Profile table*/}
             </div>
          );
     }

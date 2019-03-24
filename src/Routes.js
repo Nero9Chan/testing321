@@ -3,6 +3,7 @@ import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import LoginPage from './components/LoginPage/LoginPage';
 import ControlStaffView from './components/ControlStaffView/ControlStraffView';
 import EngineTeamView from './components/EngineTeamView/EngineTeamView';
+import MainView from './components/MainView/MainView';
 
 
 const Routes = () => (
@@ -11,8 +12,7 @@ const Routes = () => (
       <Switch>
         <Route exact path='/' component={LoginPage}/>
         <Route path='/LoginPage' component={LoginPage}/>
-        <Route path='/HKTCS' component={ControlStaffView}/>
-        <Route path='/ET' component={EngineTeamView}/>
+        <Route path='/main' component={MainView}/>
       </Switch>
     </BrowserRouter>
 );

@@ -41,17 +41,16 @@ app.get('/users/add', (req, res) => {
     });
 });
 
-//Seach for HKTCS
-app.get('/users/findHKTCS', (req,res)=>{
+//Login validation
+app.get('/users/validation', (req,res)=>{
     const {username, password}=req.query;
-    const FIND_HKTCS_USER = 
+    const FIND_USER = 
     `
-    SELECT users.username 
-    FROM users u, hktcontrolstaffs hktcs 
-    JOIN users ON hktcs.username = users.username 
-    WHERE u.username='${username}' AND u.password='${password}' AND hktcs.username='${username}'
+    SELECT *
+    FROM users
+    WHERE username='${username}' AND password='${password}'
     `
-    connection.query(FIND_HKTCS_USER, (err, results)=>{
+    connection.query(FIND_USER, (err, results)=>{
         if(err){
             return res.send(err)
         }
@@ -63,17 +62,16 @@ app.get('/users/findHKTCS', (req,res)=>{
     });
 });
 
-//Search for ET
-app.get('/users/findET', (req,res)=>{
-    const {username, password}=req.query;
-    const FIND_ET_USER = 
+//Select HKTCS details
+app.get('/users/hktcs_details', (req,res)=>{
+    const {username}=req.query;
+    const FIND_USER = 
     `
-    SELECT users.username 
-    FROM users u, engineeringteams et 
-    JOIN users ON et.username = users.username 
-    WHERE u.username='${username}' AND u.password='${password}' AND et.username='${username}'
+    SELECT *
+    FROM hktcontrolstaffs
+    WHERE username='${username}'
     `
-    connection.query(FIND_ET_USER, (err, results)=>{
+    connection.query(FIND_USER, (err, results)=>{
         if(err){
             return res.send(err)
         }
@@ -85,9 +83,50 @@ app.get('/users/findET', (req,res)=>{
     });
 });
 
-// display all users
+//Select ET details
+app.get('/users/et_details', (req,res)=>{
+    const {username}=req.query;
+    const FIND_USER = 
+    `
+    SELECT *
+    FROM engineeringteams
+    WHERE username='${username}'
+    `
+    connection.query(FIND_USER, (err, results)=>{
+        if(err){
+            return res.send(err)
+        }
+        else{
+            return res.json({
+                data: results // return username
+            })
+        }
+    });
+});
+
+// Select all users
 app.get('/users', (req, res)=>{
     connection.query(SELECT_ALL_USERS, (err, results)=>{
+        if(err){
+            return res.send(err)
+        }else{
+            return res.json({
+                data: results // return all user info
+            })
+        }
+    });
+});
+
+// Select workitems with specific type (ATG or IBI)
+app.get('/workitems', (req, res)=>{
+    const {type}=req.query;
+    const SELECT_ALL_WI = 
+    `
+    SELECT * 
+    FROM workitems
+    WHERE type='${type}'
+    `
+    connection.query(SELECT_ALL_WI, (err, results)=>{
         if(err){
             return res.send(err)
         }else{
