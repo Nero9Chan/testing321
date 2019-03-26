@@ -43,7 +43,7 @@ class HKTCSNav extends Component {
 
                 {/*Team list*/}
                 <li className="nav-item" onClick={()=>this.props.onClick(items[3])}>
-                  <i class="fas fa-users teamsIcon navIcons"></i>
+                  <i className="fas fa-users teamsIcon navIcons"></i>
                   <div className="nav-link">{items[3]}</div>
                   <div className="underline">
                   </div>

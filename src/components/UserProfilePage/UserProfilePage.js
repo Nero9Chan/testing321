@@ -18,7 +18,9 @@ class UserProfilePage extends Component {
     }
 
     getUserDetails = _ => {
-        fetch(`http://localhost:8080/users/${userType}_details?username=${userObject.username}`)
+        let ut
+        (userType==='admin' || userType==='hktcs')?ut = 'hktcs':ut = 'et';
+        fetch(`http://localhost:8080/users/${ut}_details?username=${userObject.username}`)
       .then((res) => res.json())
       .then((res) => {
         this.setState({
@@ -50,7 +52,7 @@ class UserProfilePage extends Component {
                             <th className="usernameField">Username: </th>
                             <td className="usernameData">{userDetails.username}</td>
                             </tr>
-                            {userType === 'hktcs'?
+                            {userType === 'hktcs' || userType === 'admin'?
                                 <tr> 
                                 <th className="staff_idField">Staff ID: </th>
                                 <td className="staff_idData">{userDetails.staff_id}</td>

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './OrderList.css';
 import PageHeader from '../PageHeader/PageHeader';
+import { totalOrders, orderObjects } from '../MainView/MainView';
 
 
 class OrderList extends Component {
@@ -10,25 +11,25 @@ class OrderList extends Component {
             pageName: 'Orders'
         }
     }
-    appendOrders = _ => {
-        let orders = this.props.orders;
+    appendorderObjects = _ => {
         let tr = [];
         let td = [];
-        let j = this.props.totalOrders;
+        let j = totalOrders;
         for(let i = 0; i < j; i++){
-            td.push(<td key={i+1*j}>
-                <div className="orderNo" onClick={()=>this.props.onClick('details', i)}>{orders[i].order_number}</div>
+            td.push(
+            <td key={i+1*j}>
+                <div className="orderNo" onClick={()=>this.props.onClick('details', i)}>{orderObjects[i].order_number}</div>
             </td>)
-            td.push(<td key={i+2*j}>{orders[i].order_status}</td>)
-            td.push(<td key={i+3*j}>{orders[i].assigning_date}</td>)
-            td.push(<td key={i+4*j}>{orders[i].pre_visit_date}</td>)
-            td.push(<td key={i+5*j}>{orders[i].wiring_date}</td>)
-            td.push(<td key={i+6*j}>{orders[i].team_id}</td>)
+            td.push(<td key={i+2*j}>{orderObjects[i].order_status}</td>)
+            td.push(<td key={i+3*j}>{orderObjects[i].assigning_date}</td>)
+            td.push(<td key={i+4*j}>{orderObjects[i].pre_visit_date}</td>)
+            td.push(<td key={i+5*j}>{orderObjects[i].wiring_date}</td>)
+            td.push(<td key={i+6*j}>{orderObjects[i].team_id}</td>)
             tr.push(<tr key={i+7*j}>{td}</tr>);    
             td = [];
         }
         return tr;
-    } // end of method appendOrders
+    } // end of method appendorderObjects
 
     render() { 
         return ( 
@@ -58,7 +59,7 @@ class OrderList extends Component {
                     </tr>
                 </thead>
                 <tbody>
-                    {this.appendOrders()}
+                    {this.appendorderObjects()}
                 </tbody>
             </table>
         </div>

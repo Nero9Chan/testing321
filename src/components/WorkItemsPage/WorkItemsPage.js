@@ -6,10 +6,11 @@ class WorkItemsPage extends Component {
     constructor(props){
         super(props);
         this.state={
+            workitem_type:'ATG',
             pageName: 'Work Items',
-            items:null,
-            totalItems:0,
-            workitem_type:'ATG'
+            ATGitems:null,
+            IBIitems:null,
+            totalItems:0
         }
     }
 
@@ -17,21 +18,33 @@ class WorkItemsPage extends Component {
         this.getitems();
     }
 
+    onClick = t => {
+        this.setState({
+            workitem_type: t
+        })
+        this.getitems();
+    }
+
     getitems = _ => {
         fetch(`http://localhost:8080/workitems?type=${this.state.workitem_type}`)
           .then(response => response.json())
           .then(response => {
-            console.log(response.data[0].work_item_id)
             this.setState({
               totalOrders: response.data.length,
               items: response.data
             })
           })
           .catch(err => console.log(err))
+          console.log(this.state.items); 
     } // get orders from db
 
-    appendItems = _ => {
-        let items = this.state.items;
+    appendItems = t => {
+        var items
+        if(this.state.workitem_type==='ATG'){
+            items = this.state.ATGitems;
+        }else{
+            items = this.state.IBIitems;
+        }
         let tr = [];
         let td = [];
         let j = this.state.totalOrders;
@@ -49,11 +62,17 @@ class WorkItemsPage extends Component {
     render() { 
         return ( 
             <div className="WrokItemsPage MainWrapper">
-                <PageHeader pageName={this.state.pageName}/>
+                <PageHeader pageName={this.state.pageName + " (" + this.state.workitem_type + ")"} />
+
                 <div className="editBtnWrapper">
                     <i className="fas fa-edit editIcon"></i>
                     <div className="editTag">Edit</div>
                 </div>
+
+                <button type="button" class="btn btn-secondary atgBtn" onClick={()=>this.onClick('ATG')}>ATG</button>
+                <button type="button" class="btn btn-secondary ibiBtn" onClick={()=>this.onClick('IBI')}>IBI</button>
+                <div className="btnUnderline"></div>
+
                 <table border="1px" className="table table-hover table-striped table-bordered workItemTable">
                     <thead className="thead-dark">
                         <tr>

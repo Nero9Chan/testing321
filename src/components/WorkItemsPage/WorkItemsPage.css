@@ -4,3 +4,16 @@
     width: 100%;
     margin: 10px
 }
+
+.atgBtn{
+    position: relative;
+    top:65px;
+    left:10px;
+}
+
+.ibiBtn{
+    position: relative;
+    top:65px;
+    left:25px;
+}
+

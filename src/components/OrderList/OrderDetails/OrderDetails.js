@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './OrderDetails.css';
 import PageHeader from '../../PageHeader/PageHeader';
-import { orderObjects } from '../../ControlStaffView/ControlStraffView';
+import { orderObjects } from '../../MainView/MainView';
 
 
 
@@ -9,14 +9,12 @@ class OrderDetails extends Component {
     constructor(props){
         super(props);
         this.state={
-            pageName: this.props.pageName,
-            orderObjects: orderObjects,
+            pageName: 'Order details',
             orderIndex: this.props.orderIndex
         }
     }
 
     render() {
-        let orderObjects = this.state.orderObjects;
         let i = this.state.orderIndex;
         return (
             <div className="OrderDetails MainWrapper">
