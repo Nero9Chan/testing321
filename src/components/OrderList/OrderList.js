@@ -11,6 +11,7 @@ class OrderList extends Component {
             pageName: 'Orders'
         }
     }
+
     appendorderObjects = _ => {
         let orderObjects = this.props.orderObjects;
         let tr = [];

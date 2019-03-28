@@ -151,6 +151,26 @@ app.get('/orders', (req, res)=>{
     });
 });
 
+// search for orders with condition
+app.get('/orders/find', (req, res)=>{
+    const {field, keyword}=req.query;
+    const SELECT_ORDERS = 
+    `
+    SELECT * 
+    FROM orders
+    WHERE ${field} LIKE '${keyword}%'
+    `
+    connection.query(SELECT_ORDERS, (err, results)=>{
+        if(err){
+            return res.send(err)
+        }else{
+            return res.json({
+                data:results
+            })
+        }
+    })
+})
+
 app.listen(PORT, ()=>{
     console.log(`server listening on port ${PORT}`)
 });

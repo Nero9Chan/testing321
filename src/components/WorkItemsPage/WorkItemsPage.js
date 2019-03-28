@@ -2,11 +2,12 @@ import React, { Component } from 'react';
 import PageHeader from '../PageHeader/PageHeader';
 import './WorkItemsPage.css';
 
+let workitem_type;
+
 class WorkItemsPage extends Component {
     constructor(props){
         super(props);
         this.state={
-            workitem_type:'ATG',
             pageName: 'Work Items',
             ATGitems:{},
             IBIitems:{},
@@ -15,20 +16,16 @@ class WorkItemsPage extends Component {
     }
 
     componentWillMount(){
-        this.getitems();
+        this.getitems('ATG');
     }
 
-    onClick = t => {
-        this.setState({
-            workitem_type: t
-        }).then(this.getitems())
-    }
-
-    getitems = _ => {
-        fetch(`http://localhost:8080/workitems?type=${this.state.workitem_type}`)
+    getitems = type => {
+        workitem_type = type;
+        console.log(type);
+        fetch(`http://localhost:8080/workitems?type=${type}`)
           .then(response => response.json())
           .then(response => {
-            if(this.state.workitem_type==='ATG'){
+            if(type==='ATG'){
                 this.setState({
                     totalOrders: response.data.length,
                     ATGitems: response.data
@@ -41,13 +38,13 @@ class WorkItemsPage extends Component {
             }
           })
           .catch(err => console.log(err))
-          console.log(this.state.workitem_type); 
+          console.log(workitem_type); 
     } // get orders from db
 
     appendItems = t => {
-        console.log(this.state.workitem_type);
+        console.log(workitem_type);
         let items;
-        if(this.state.workitem_type==='ATG'){
+        if(workitem_type==='ATG'){
             items = this.state.ATGitems;
         }else{
             items = this.state.IBIitems;
@@ -69,15 +66,15 @@ class WorkItemsPage extends Component {
     render() { 
         return ( 
             <div className="WrokItemsPage MainWrapper">
-                <PageHeader pageName={this.state.pageName + " (" + this.state.workitem_type + ")"} />
+                <PageHeader pageName={this.state.pageName + " (" + workitem_type + ")"} />
 
                 <div className="editBtnWrapper">
                     <i className="fas fa-edit editIcon"></i>
                     <div className="editTag">Edit</div>
                 </div>
 
-                <button type="button" class="btn btn-secondary atgBtn" onClick={()=>this.onClick('ATG')}>ATG</button>
-                <button type="button" class="btn btn-secondary ibiBtn" onClick={()=>this.onClick('IBI')}>IBI</button>
+                <button type="button" class="btn btn-secondary atgBtn" onClick={()=>this.getitems('ATG')}>ATG</button>
+                <button type="button" class="btn btn-secondary ibiBtn" onClick={()=>this.getitems('IBI')}>IBI</button>
                 <div className="btnUnderline"></div>
 
                 <table border="1px" className="table table-hover table-striped table-bordered workItemTable">

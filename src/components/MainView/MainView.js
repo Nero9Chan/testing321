@@ -77,6 +77,19 @@ class MainView extends Component {
         .catch(err => console.log(err))
     } // get orders from db
     
+    findOrders = (field, keyword) => {
+      fetch(`http://localhost:8080/orders/find?field=${field}&keyword=${keyword}`)
+      .then(response => response.json())
+        .then(response => {
+          console.log(response.data[0]);
+          this.setState({
+            orderObjects: response.data
+          })
+          orderObjects = response.data;
+        })
+        .catch(err => console.log(err))
+    }
+    
     logout = _ => {
       this.setState({
         username:''
@@ -92,7 +105,7 @@ class MainView extends Component {
             {this.state.username===''?<Redirect to={{pathname: `/`}}/>:
               <>
               <NavBar onClick={this.navOnClick} logout={this.logout} items={s.items}/>
-              <SearchBar pageType={s.pageType}/>
+              <SearchBar pageType={s.pageType} findOrders={this.findOrders}/>
               {/*render screen when login as hktcs*/}
               {userType==='hktcs'?
                 <>
