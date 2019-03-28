@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './OrderList.css';
 import PageHeader from '../PageHeader/PageHeader';
-import { totalOrders, orderObjects } from '../MainView/MainView';
+import { totalOrders } from '../MainView/MainView';
 
 
 class OrderList extends Component {
@@ -12,6 +12,7 @@ class OrderList extends Component {
         }
     }
     appendorderObjects = _ => {
+        let orderObjects = this.props.orderObjects;
         let tr = [];
         let td = [];
         let j = totalOrders;
@@ -59,7 +60,7 @@ class OrderList extends Component {
                     </tr>
                 </thead>
                 <tbody>
-                    {this.appendorderObjects()}
+                    {this.props.orderObjects[0]!==undefined?this.appendorderObjects():<></>}
                 </tbody>
             </table>
         </div>

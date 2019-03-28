@@ -8,38 +8,45 @@ class WorkItemsPage extends Component {
         this.state={
             workitem_type:'ATG',
             pageName: 'Work Items',
-            ATGitems:null,
-            IBIitems:null,
+            ATGitems:{},
+            IBIitems:{},
             totalItems:0
         }
     }
 
-    componentDidMount(){
+    componentWillMount(){
         this.getitems();
     }
 
     onClick = t => {
         this.setState({
             workitem_type: t
-        })
-        this.getitems();
+        }).then(this.getitems())
     }
 
     getitems = _ => {
         fetch(`http://localhost:8080/workitems?type=${this.state.workitem_type}`)
           .then(response => response.json())
           .then(response => {
-            this.setState({
-              totalOrders: response.data.length,
-              items: response.data
-            })
+            if(this.state.workitem_type==='ATG'){
+                this.setState({
+                    totalOrders: response.data.length,
+                    ATGitems: response.data
+                })
+            }else{
+                this.setState({
+                    totalOrders: response.data.length,
+                    IBIitems: response.data
+                })
+            }
           })
           .catch(err => console.log(err))
-          console.log(this.state.items); 
+          console.log(this.state.workitem_type); 
     } // get orders from db
 
     appendItems = t => {
-        var items
+        console.log(this.state.workitem_type);
+        let items;
         if(this.state.workitem_type==='ATG'){
             items = this.state.ATGitems;
         }else{
@@ -91,7 +98,7 @@ class WorkItemsPage extends Component {
                         </tr>
                     </thead>
                     <tbody>
-                        {this.appendItems()}
+                        {this.state.ATGitems[0]!==undefined||this.state.IBIitems[0]!==undefined?this.appendItems():<></>}
                     </tbody>
                 </table>
             </div>

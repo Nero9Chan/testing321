@@ -22,14 +22,13 @@ class MainView extends Component {
       this.state = {
         orders:[],
         pageType: 'Orders',
-        totalOrders: 0,
         orderIndex: 0,
-        username: userObject.username
+        username: userObject.username,
+        orderObjects:{}
       }
     }
 
     componentDidMount(){
-      this.getOrders(); // get orders to display
       if(userType==='hktcs'){
         items = ["Orders", "Import", "Quotations", "Teams"];
           this.setState({
@@ -48,6 +47,7 @@ class MainView extends Component {
       } // initialize nav items
 
       console.log(this.state.username);
+      this.getOrders(); // get orders to display
     } 
 
     navOnClick = t =>{
@@ -68,7 +68,11 @@ class MainView extends Component {
         .then(response => response.json())
         .then(response => {
           totalOrders = response.data.length;
+          this.setState({
+            orderObjects: response.data
+          })
           orderObjects = response.data;
+          console.log(orderObjects);
         })
         .catch(err => console.log(err))
     } // get orders from db
@@ -82,6 +86,7 @@ class MainView extends Component {
     render() {
       const s = this.state;
       console.log(s.pageType);
+      console.log(this.state.orderObjects);
         return (
           <div>
             {this.state.username===''?<Redirect to={{pathname: `/`}}/>:
@@ -91,7 +96,7 @@ class MainView extends Component {
               {/*render screen when login as hktcs*/}
               {userType==='hktcs'?
                 <>
-                 {s.pageType===items[0]?<OrderList onClick={this.orderOnClick} />:
+                 {s.pageType===items[0]?<OrderList onClick={this.orderOnClick} orderObjects={this.state.orderObjects}/>:
                  s.pageType===items[1]?<ImportPage />:
                  s.pageType===items[2]?<QuotationPage />:
                  s.pageType===items[3]?<TeamsPage />:
@@ -105,7 +110,7 @@ class MainView extends Component {
               {/*render screen when login as et*/}
               {userType==='et'?
                 <>
-                 {s.pageType===items[0]?<OrderList onClick={this.orderOnClick} />:
+                 {s.pageType===items[0]?<OrderList onClick={this.orderOnClick} orderObjects={this.state.orderObjects}/>:
                  s.pageType===items[1]?<UploadPage />:
                  s.pageType===items[2]?<QuotationPage />:
                  s.pageType==='details'?<OrderDetails orderIndex={this.state.orderIndex}/>:
@@ -118,7 +123,7 @@ class MainView extends Component {
               {/*render screen when login as admin*/}
               {userType==='admin'?
                 <>
-                 {s.pageType===items[0]?<OrderList onClick={this.orderOnClick} />:
+                 {s.pageType===items[0]?<OrderList onClick={this.orderOnClick} orderObjects={this.state.orderObjects}/>:
                  s.pageType===items[1]?<QuotationPage />:
                  s.pageType===items[2]?<WorkItemsPage />:
                  s.pageType===items[3]?<TeamsPage />:
@@ -132,7 +137,7 @@ class MainView extends Component {
               </>
             }
           </div>
-        );
+        ); // end of return
     }
 }
 export default MainView;
