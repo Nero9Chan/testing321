@@ -29,6 +29,7 @@ class MainView extends Component {
     }
 
     componentDidMount(){
+      this.getOrders(); // get orders to display
       if(userType==='hktcs'){
         items = ["Orders", "Import", "Quotations", "Teams"];
           this.setState({
@@ -47,7 +48,6 @@ class MainView extends Component {
       } // initialize nav items
 
       console.log(this.state.username);
-      this.getOrders(); // get orders to display
     } 
 
     navOnClick = t =>{
