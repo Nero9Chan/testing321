@@ -40,7 +40,11 @@ class SearchBar extends Component {
     render() { 
         return (
         <> 
-        {this.props.pageType !== "Orders"? this.props.pageType !== "Work Items"? <></>
+        {this.props.pageType !== "Orders"? this.props.pageType !== "Work Items"?
+        // render normal top bar
+        <div className="SearchBar">
+            <img src={HKTLogo} alt="logo" width="200px" className="HKTLogo"></img>
+        </div>
         : // render order list seach bar
         <div className="SearchBar">
             <img src={HKTLogo} alt="logo" width="200px" className="HKTLogo"></img>

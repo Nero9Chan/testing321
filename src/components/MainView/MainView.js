@@ -35,7 +35,7 @@ class MainView extends Component {
               pageType: items[0]
           })
       }else if(userType==='et'){
-        items = ["Orders", "Make Quotation", "Quotations"];
+        items = ["Orders", "Upload Quotation", "Quotations"];
         this.setState({
             pageType: items[0]
         })

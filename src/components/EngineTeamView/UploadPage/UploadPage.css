@@ -1,0 +1,12 @@
+.quotation_form{
+    position: relative;
+    width:95%;
+    left:20px;
+    top:100px;
+}
+
+.addColBtn{
+    position: relative;
+    right:-100%;
+    cursor: pointer;
+}

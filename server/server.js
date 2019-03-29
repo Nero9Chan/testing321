@@ -151,7 +151,7 @@ app.get('/orders', (req, res)=>{
     });
 });
 
-// search for orders with condition
+// search for orders with condition (general search)
 app.get('/orders/find', (req, res)=>{
     const {field, keyword}=req.query;
     const SELECT_ORDERS = 
@@ -161,6 +161,67 @@ app.get('/orders/find', (req, res)=>{
     WHERE ${field} LIKE '${keyword}%'
     `
     connection.query(SELECT_ORDERS, (err, results)=>{
+        if(err){
+            return res.send(err)
+        }else{
+            return res.json({
+                data:results
+            })
+        }
+    })
+})
+
+// search for orders with condition (specific search)
+app.get('/orders/findThe', (req, res)=>{
+    const {field, keyword}=req.query;
+    const SELECT_ORDERS = 
+    `
+    SELECT * 
+    FROM orders
+    WHERE ${field} LIKE '${keyword}'
+    `
+    connection.query(SELECT_ORDERS, (err, results)=>{
+        if(err){
+            return res.send(err)
+        }else{
+            return res.json({
+                data:results
+            })
+        }
+    })
+})
+
+// insert quotation
+app.get('/quotations/insert', (req,res)=>{
+    const {order_number, remarks, submition_date}=req.query;
+    
+    const INSERT_QUOTATIONS = 
+    `
+    INSERT INTO quotations
+    (order_number, remarks, submition_date) VALUES
+    ('${order_number}', '${remarks}', '${submition_date}')
+    `
+    connection.query(INSERT_QUOTATIONS, (err, results)=>{
+        if(err){
+            return res.send(err)
+        }else{
+            return res.json({
+                data:results
+            })
+        }
+    })
+})
+
+// insert work item case
+app.get('/itemcase/insert', (req,res)=>{
+    const {quotation_id, work_item, item_amount}=req.query;
+    const INSERT_ITEMCASE = 
+    `
+    INSERT INTO quotations
+    (quotation_id, work_item_id, item_amount) VALUES
+    ('${quotation_id}', '${work_item}', '${item_amount}')
+    `
+    connection.query(INSERT_ITEMCASE, (err, results)=>{
         if(err){
             return res.send(err)
         }else{
