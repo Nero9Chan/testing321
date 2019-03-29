@@ -27,7 +27,7 @@ class LoginPage extends Component {
       fetch(`http://localhost:8080/users/validation?username=${this.state.username}&password=${this.state.password}`)
       .then((res) => res.json())
       .then((res) => {
-        console.log(res.data[0].username);
+        console.log(res.data[0]);
         if(res.data.length>0){
           userObject = res.data[0];
           userType = res.data[0].user_type;
@@ -35,7 +35,10 @@ class LoginPage extends Component {
             isAuthenticated: true,
           })
         }else{
-          return false;
+          this.setState({
+            errorMessage: 'Incorrect username or password'
+          });
+          console.log(this.state.errorMessage);
         }
       })
       .catch(err => console.log(err))
@@ -52,11 +55,7 @@ class LoginPage extends Component {
         this.setState({
           errorMessage: ''
         }) // end of method setState
-        if(!this.validateUser()){
-          this.setState({
-            errorMessage: 'Incorrect username or password'
-          }) 
-        } // end of validating username and password from HKTCS DB
+        this.validateUser();
       } // end of checking empty
     } // end of onSubmit method
 
@@ -67,14 +66,8 @@ class LoginPage extends Component {
           <Redirect to={{pathname: `/main`}}/>:(
             <div className="login container">
               <img src={logo} alt="Logo"/>
-              {
-                this.state.errorMessage !== '' ? // prompt error message if it's not empty
-                (
-                  <div>
-                    {this.state.errorMessage}
-                  </div>
-                ):(<></>)
-              }
+              <div className="title">Order Monitoring System</div>
+              
               <form onSubmit={this.onSubmit}>
                   <div className="form-input">
                       <input type="text" name="username" value={this.state.username} placeholder="Username" onChange={this.onChange}/>
@@ -84,6 +77,14 @@ class LoginPage extends Component {
                   </div>
                   <button type="submit" name="submit" value="LOGIN" className="btn-login">LOGIN</button>
               </form>
+              {
+                this.state.errorMessage !== '' ? // prompt error message if it's not empty
+                (
+                  <div className="errorMessage">
+                    {this.state.errorMessage}
+                  </div>
+                ):(<></>)
+              }
             </div>
           )} 
         </div>

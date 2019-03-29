@@ -10,3 +10,10 @@
     cursor: pointer;
     text-decoration: underline;
 }
+
+.not_found_tag{
+    position: absolute;
+    top:100px;
+    left:45%;
+    align-content: center;
+}

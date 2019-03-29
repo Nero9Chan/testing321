@@ -37,6 +37,10 @@ class OrderList extends Component {
         return ( 
         <div className="OrderList MainWrapper col-lg-12">
             <PageHeader pageName={this.state.pageName} />
+            <div className="refreshBtnWrapper">
+                    <i class="fas fa-sync refreshIcon" onClick={this.props.getOrders}></i>
+                    <div className="refreshTag">refresh</div>
+            </div>
             <table border="1px" className="table table-hover table-striped table-bordered orderTable">
                 <thead className="thead-dark">
                     <tr>
@@ -60,9 +64,9 @@ class OrderList extends Component {
                         </th>
                     </tr>
                 </thead>
-                <tbody>
-                    {this.props.orderObjects[0]!==undefined?this.appendorderObjects():<></>}
-                </tbody>
+                    {this.props.orderObjects[0]!==undefined?
+                    <tbody>{this.appendorderObjects()}</tbody>:
+                    <div className="not_found_tag">not found</div>}
             </table>
         </div>
         );

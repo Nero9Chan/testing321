@@ -24,7 +24,7 @@ class MainView extends Component {
         pageType: 'Orders',
         orderIndex: 0,
         username: userObject.username,
-        orderObjects:{}
+        orderObjects:[]
       }
     }
 
@@ -78,14 +78,24 @@ class MainView extends Component {
     } // get orders from db
     
     findOrders = (field, keyword) => {
+      console.log(field + " " + keyword);
       fetch(`http://localhost:8080/orders/find?field=${field}&keyword=${keyword}`)
       .then(response => response.json())
         .then(response => {
           console.log(response.data[0]);
-          this.setState({
-            orderObjects: response.data
-          })
-          orderObjects = response.data;
+          if(response.data[0]!==undefined){
+            totalOrders = response.data.length;
+            this.setState({
+              orderObjects: response.data
+            })
+            orderObjects = response.data;
+          }else{
+            totalOrders = 0;
+            this.setState({
+              orderObjects: []
+            })
+            orderObjects = [];
+          }
         })
         .catch(err => console.log(err))
     }
@@ -109,7 +119,7 @@ class MainView extends Component {
               {/*render screen when login as hktcs*/}
               {userType==='hktcs'?
                 <>
-                 {s.pageType===items[0]?<OrderList onClick={this.orderOnClick} orderObjects={this.state.orderObjects}/>:
+                 {s.pageType===items[0]?<OrderList onClick={this.orderOnClick} orderObjects={this.state.orderObjects} getOrders={this.getOrders}/>:
                  s.pageType===items[1]?<ImportPage />:
                  s.pageType===items[2]?<QuotationPage />:
                  s.pageType===items[3]?<TeamsPage />:
@@ -123,7 +133,7 @@ class MainView extends Component {
               {/*render screen when login as et*/}
               {userType==='et'?
                 <>
-                 {s.pageType===items[0]?<OrderList onClick={this.orderOnClick} orderObjects={this.state.orderObjects}/>:
+                 {s.pageType===items[0]?<OrderList onClick={this.orderOnClick} orderObjects={this.state.orderObjects} getOrders={this.getOrders}/>:
                  s.pageType===items[1]?<UploadPage />:
                  s.pageType===items[2]?<QuotationPage />:
                  s.pageType==='details'?<OrderDetails orderIndex={this.state.orderIndex}/>:
@@ -136,7 +146,7 @@ class MainView extends Component {
               {/*render screen when login as admin*/}
               {userType==='admin'?
                 <>
-                 {s.pageType===items[0]?<OrderList onClick={this.orderOnClick} orderObjects={this.state.orderObjects}/>:
+                 {s.pageType===items[0]?<OrderList onClick={this.orderOnClick} orderObjects={this.state.orderObjects} getOrders={this.getOrders}/>:
                  s.pageType===items[1]?<QuotationPage />:
                  s.pageType===items[2]?<WorkItemsPage />:
                  s.pageType===items[3]?<TeamsPage />:

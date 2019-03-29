@@ -15,10 +15,11 @@ class SearchBar extends Component {
     onChange = e =>{
         this.setState({
             keyword: e.target.value
-        })
-        this.props.findOrders(this.state.searchField, this.state.keyword);
+        },
+        () => {
+            this.props.findOrders(this.state.searchField, this.state.keyword);
+        });
         console.log(this.state.keyword);
-        console.log(e.target);
     }
 
     selectOnChange = e => {
@@ -59,7 +60,7 @@ class SearchBar extends Component {
             <i className="fas fa-search searchIcon"></i>
             <select value={this.state.searchField} className="selectOrderFields" onChange={this.selectOnChange}>
                 <option value="order_number">Order#</option>
-                <option value="BNS">BNS</option>
+                <option value="BSN">BSN</option>
                 <option value="order_status">Status</option>
                 <option value="assigning_date">Assigning Date</option>
                 <option value="pre_visit_date">Pre-visit Date</option>
