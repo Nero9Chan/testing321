@@ -1,7 +1,7 @@
 {
   "short_name": "HKT Order Monitoring System",
   "name": "Create React App Sample",
-  "start_url": ".", //start at the root
+  "start_url": ".",
   "display": "standalone",
   "theme_color": "#000000",
   "background_color": "#ffffff"
