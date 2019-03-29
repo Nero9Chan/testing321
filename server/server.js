@@ -12,7 +12,7 @@ const connection = mysql.createConnection({
     database: 'hkt'
 });
 
-
+/*testing for github only by nero*/
 
 connection.connect(err => {
     if(err){
